@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const Distube = require('distube');
+const {resolveSpeechWithGoogleSpeechV2} = require('discord-speech-recognition');
 const client = new Discord.Client();
 const {token} = require('./config.json');
 const distube = new Distube(client, {searchSongs: false, emitNewSongOnly: true});
@@ -18,7 +19,11 @@ client.on('message', msg=>{
     // if(!msg.author.voice){
     //     msg.channel.send('Войдите в голосовой чат');
     // }
-    var command = msg.content.substr(0, 5);
+    var devider = msg.content.indexOf(' ');
+    var command;
+    if(devider === -1)
+        command = msg.content;  
+    else command = msg.content.substr(0, devider);
 
     switch(command){
         case '/play':
@@ -39,14 +44,34 @@ client.on('message', msg=>{
 
         case '/!repeat':
             distube.setRepeatMode(msg, 0);
+            msg.channel.send('Должен был выключить Repeat Mod');
             break;
 
         case '/repeat':
             distube.setRepeatMode(msg, 1);
+            msg.channel.send('Должен был включить Repeat Mod для конкретной песни');
             break;
         
         case '/repeatQ':
             distube.setRepeatMode(msg, 2);
-            break;    
+            msg.channel.send('Должен был включить Repeat Mod для всего плейлиста');
+            break; 
+            
+        case '/cyka':
+            msg.channel.send('Я должен был говорить сука без остановки', {tts: true});
+            var i = 0;
+            while(i < 5){
+                msg.channel.send('СУКА', {tts: true});
+                i++;
+            }
+            break;
+
+        case '/join':
+            msg.member.voice.channel.join();
+            break;
     }
+
+    client.on("speech", (msg) => {
+        msg.author.send(msg.content);
+      });
 });
