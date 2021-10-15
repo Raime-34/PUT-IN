@@ -1,5 +1,11 @@
 {
     "token": "ODk2Mjg4NTY2NzIyODM4NTM4.YWE7xg._FRt6IdK2YBMBtc9Qx8nO8q1skk",
     "prefix": "/",
-    "music_channel": "dj-eba"
+    "music_channel": "dj-eba",
+    "reserved": [
+        {"name":"сало","url":"https://www.youtube.com/watch?v=PVXBXjRC3Hs&t=1s"},
+        {"name":"cock","url":"https://www.youtube.com/watch?v=JnIhhif0f6Y"},
+        {"name":"1000-7","url":"https://www.youtube.com/watch?v=gw7yUMtlB1w"},
+        {"name":"vergin","url":"https://www.youtube.com/watch?v=Jrg9KxGNeJY"}
+    ]
 }
