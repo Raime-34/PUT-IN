@@ -30,17 +30,17 @@ client.on('message', msg=>{
         }
     });
 
-    validator.validateUrl(msg.content, function(res, err) {
-        if(err) //err
-        {
-            msg.channel.send(msg.content);
-            msg.channel.send(err);
-        }
-        else
-          {
-            msg.channel.send("video url is correct");
-         }
-      });
+    // validator.validateUrl(msg.content, function(res, err) {
+    //     if(err) //err
+    //     {
+    //         msg.channel.send(msg.content);
+    //         msg.channel.send(err);
+    //     }
+    //     else
+    //       {
+    //         msg.channel.send("video url is correct");
+    //      }
+    //   });
 
     if(!msg.content.startsWith(prefix)) return;
     if(!msg.channel.name === music_channel) return;
@@ -100,6 +100,11 @@ client.on('message', msg=>{
             case '/Q':
                 let q = distube.search(msg.content.replace(command, '').trim());
                 q.then((value) => {msg.channel.send(value.url + '\n')});
+                break;
+
+            case '/BB':
+                let filter = distube.setFilter(msg, msg.content.replace(command, '').trim());
+                msg.channel.send("Current queue filter: " + (filter || "Off"));
                 break;
         }
     } catch (MinigetError) {
