@@ -5,6 +5,8 @@
     "discord.js": "^12.0.0",
     "distube": "^2.8.18",
     "ffmpeg-static": "^4.4.0",
+    "graphicsmagick": "^0.0.1",
+    "image-to-ascii": "^3.0.13",
     "youtube-validator": "^1.1.2"
   }
 }

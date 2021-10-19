@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const Distube = require('distube');
+const imageToAscii = require("image-to-ascii");
 const {resolveSpeechWithGoogleSpeechV2} = require('discord-speech-recognition');
 const client = new Discord.Client();
 const {token} = require('./config.json');
