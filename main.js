@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Distube = require('distube');
-const imageToAscii = require("image-to-ascii");
+const fs = require('fs');
 const {resolveSpeechWithGoogleSpeechV2} = require('discord-speech-recognition');
 const client = new Discord.Client();
 const {token} = require('./config.json');
@@ -11,7 +11,9 @@ const {reserved} = require('./config.json');
 const { DisTubeOptions } = require('distube');
 const validator = require('youtube-validator');
 const { validateUrl } = require('youtube-validator');
-client.login(token);
+const imageToAscii = require("image-to-ascii");
+const c = require('./imageConverter');
+client.login(process.env.TOKEN);
 
 client.on('ready', () =>{
     console.log('Опять работать');
@@ -57,7 +59,9 @@ client.on('message', msg=>{
     try {
         switch(command){
             case '/play':
-                distube.play(msg, msg.content.replace(command, '').trim());
+                distube.play(msg, msg.content.replace(command, '').trim()).catch(function(){
+                    msg.channel.send("Нерабочая ссылка");
+                });
                 break;
     
             case '/stop':
@@ -106,6 +110,21 @@ client.on('message', msg=>{
             case '/BB':
                 let filter = distube.setFilter(msg, msg.content.replace(command, '').trim());
                 msg.channel.send("Current queue filter: " + (filter || "Off"));
+                break;
+
+            case '/C':
+                // var res = c.convert(msg.content.replace(command, '').trim());
+                // console.log(res);
+                // msg.channel.send(res);
+
+                imageToAscii(msg.content.replace(command, '').trim(), (err, converted) => {
+                    let writeStream = fs.createWriteStream('buffer.txt');
+                    writeStream.write(converted, 'binary');
+                    //fs.writeFileSync('buffer.txt', converted, 'utf8');
+                    console.log(converted);
+                    msg.channel.send('Результат', {files: ['./buffer.txt'], });
+                });
+
                 break;
         }
     } catch (MinigetError) {
