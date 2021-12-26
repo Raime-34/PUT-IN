@@ -13,7 +13,7 @@ const validator = require('youtube-validator');
 const { validateUrl } = require('youtube-validator');
 const imageToAscii = require("image-to-ascii");
 const c = require('./imageConverter');
-client.login(process.env.TOKEN);
+client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () =>{
     console.log('Опять работать');
