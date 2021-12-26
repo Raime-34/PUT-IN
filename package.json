@@ -9,9 +9,9 @@
     "image-to-ascii": "^3.0.13",
     "youtube-validator": "^1.1.2"
   },
-  
+
   "engines": {
-      "node": "16.x",
-      "npm": "8.x"
-    }
+    "node": "16.x",
+    "npm": "8.x"
+  }
 }
