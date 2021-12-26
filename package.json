@@ -1,8 +1,8 @@
 {
   "dependencies": {
     "engines": {
-      "node": "16.11.0",
-      "npm": "8.0.0"
+      "node": "^16.11.0",
+      "npm": "^8.0.0"
     },
     "@discordjs/opus": "^0.5.3",
     "discord-speech-recognition": "^1.1.0",
